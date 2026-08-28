@@ -31,14 +31,40 @@ failedLoginReport(){
 	else
 		echo "No Possible brute-force sources detected."
 	fi
+	
+	echo ""
+
 	rm failedLogin.tmp list.tmp brute.tmp
 }
 
 
 #=======================Task #2 ===============================
-#queryActivitySummary(){
-#
-#}
+queryActivitySummary(){
+	
+	grep "\[QUERY\]" "$datafile" > queryEvents.tmp
+	printf "Total Number of QUERY events: "
+	wc -l < queryEvents.tmp
+	echo ""
+
+	printf "Query type:\n"
+
+	printf "SELECT: "
+	grep "SELECT" queryEvents.tmp | wc -l 
+	
+	printf "UPDATE: "
+	grep "UPDATE" queryEvents.tmp | wc -l
+	
+	printf "INSERT: "
+	grep "INSERT" queryEvents.tmp | wc -l
+	
+	printf "DELETE: "
+	grep "DELETE" queryEvents.tmp | wc -l
+	
+	echo ""
+
+	rm queryEvents.tmp
+
+}
 
 
 ###################
