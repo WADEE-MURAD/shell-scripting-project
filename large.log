@@ -1,0 +1,124 @@
+[2026-08-26 07:42:11] [INFO] [SESSION_1001] [admin] [192.168.1.10] [AUTH] - User admin logged in successfully
+[2026-08-26 07:43:02] [INFO] [SESSION_1002] [teller01] [192.168.1.21] [AUTH] - User teller01 logged in successfully
+[2026-08-26 07:44:18] [INFO] [SESSION_1003] [teller02] [192.168.1.22] [AUTH] - User teller02 logged in successfully
+[2026-08-26 07:45:33] [INFO] [SESSION_1004] [teller03] [192.168.1.23] [AUTH] - User teller03 logged in successfully
+[2026-08-26 07:47:09] [INFO] [SESSION_1002] [teller01] [192.168.1.21] [QUERY] - Executed query on accounts table
+[2026-08-26 07:48:41] [INFO] [SESSION_1003] [teller02] [192.168.1.22] [QUERY] - Executed query on customers table
+[2026-08-26 07:49:15] [WARNING] [SESSION_1002] [teller01] [192.168.1.21] [QUERY] - Slow query detected on accounts table
+[2026-08-26 07:51:27] [INFO] [SESSION_1004] [teller03] [192.168.1.23] [QUERY] - Executed query on transactions table
+[2026-08-26 07:52:48] [INFO] [SESSION_1002] [teller01] [192.168.1.21] [TRANSACTION] - Deposit of $250 completed for account 45821
+[2026-08-26 07:54:03] [INFO] [SESSION_1003] [teller02] [192.168.1.22] [TRANSACTION] - Deposit of $750 completed for account 56213
+[2026-08-26 07:55:36] [ERROR] [SESSION_1005] [unknown] [203.0.113.55] [AUTH] - Failed login attempt for user root (invalid password)
+[2026-08-26 07:57:12] [INFO] [SESSION_1004] [teller03] [192.168.1.23] [TRANSACTION] - Withdrawal of $100 completed for account 77124
+[2026-08-26 07:58:44] [WARNING] [SESSION_1003] [teller02] [192.168.1.22] [TRANSACTION] - Withdrawal of $1500 declined due to insufficient funds
+[2026-08-26 08:01:05] [INFO] [SESSION_1001] [admin] [192.168.1.10] [QUERY] - Executed query on users table
+[2026-08-26 08:02:31] [ERROR] [SESSION_1006] [unknown] [198.51.100.42] [AUTH] - Failed login attempt for user admin (invalid password)
+[2026-08-26 08:04:19] [INFO] [SESSION_1002] [teller01] [192.168.1.21] [QUERY] - Executed query on transactions table
+[2026-08-26 08:05:52] [INFO] [SESSION_1003] [teller02] [192.168.1.22] [QUERY] - Executed query on accounts table
+[2026-08-26 08:07:33] [ERROR] [SESSION_1007] [unknown] [203.0.113.77] [AUTH] - Failed login attempt for user root (invalid password)
+[2026-08-26 08:09:14] [WARNING] [SESSION_1004] [teller03] [192.168.1.23] [QUERY] - Query execution time exceeded 5 seconds
+[2026-08-26 08:11:26] [INFO] [SESSION_1002] [teller01] [192.168.1.21] [TRANSACTION] - Transfer of $450 completed from account 45821 to account 56213
+[2026-08-26 08:13:47] [INFO] [SESSION_1003] [teller02] [192.168.1.22] [TRANSACTION] - Withdrawal of $200 completed for account 56213
+[2026-08-26 08:15:02] [WARNING] [SESSION_1002] [teller01] [192.168.1.21] [TRANSACTION] - Transfer request requires additional verification
+[2026-08-26 08:17:39] [INFO] [SESSION_1004] [teller03] [192.168.1.23] [QUERY] - Executed query on audit_logs table
+[2026-08-26 08:19:55] [ERROR] [SESSION_1008] [teller03] [192.168.1.23] [TRANSACTION] - Transaction failed while processing withdrawal
+[2026-08-26 08:21:17] [CRITICAL] [SESSION_1008] [teller03] [192.168.1.23] [TRANSACTION] - Transaction rollback triggered due to system error
+[2026-08-26 08:23:41] [INFO] [SESSION_1001] [admin] [192.168.1.10] [BACKUP] - Database backup started
+[2026-08-26 08:25:18] [INFO] [SESSION_1001] [admin] [192.168.1.10] [BACKUP] - Database backup completed successfully
+[2026-08-26 08:27:04] [INFO] [SESSION_1009] [teller04] [192.168.1.24] [AUTH] - User teller04 logged in successfully
+[2026-08-26 08:28:36] [INFO] [SESSION_1009] [teller04] [192.168.1.24] [QUERY] - Executed query on accounts table
+[2026-08-26 08:30:12] [INFO] [SESSION_1009] [teller04] [192.168.1.24] [TRANSACTION] - Deposit of $1200 completed for account 88231
+[2026-08-26 08:32:49] [WARNING] [SESSION_1009] [teller04] [192.168.1.24] [QUERY] - Slow query detected on customers table
+[2026-08-26 08:34:21] [ERROR] [SESSION_1010] [unknown] [198.51.100.89] [AUTH] - Failed login attempt for user admin (invalid password)
+[2026-08-26 08:36:03] [INFO] [SESSION_1002] [teller01] [192.168.1.21] [TRANSACTION] - Withdrawal of $350 completed for account 45821
+[2026-08-26 08:38:17] [INFO] [SESSION_1003] [teller02] [192.168.1.22] [QUERY] - Executed query on accounts table
+[2026-08-26 08:40:42] [WARNING] [SESSION_1003] [teller02] [192.168.1.22] [TRANSACTION] - Large withdrawal amount detected
+[2026-08-26 08:42:15] [INFO] [SESSION_1004] [teller03] [192.168.1.23] [TRANSACTION] - Deposit of $900 completed for account 77124
+[2026-08-26 08:44:38] [ERROR] [SESSION_1011] [unknown] [203.0.113.101] [AUTH] - Failed login attempt for user teller01 (invalid password)
+[2026-08-26 08:46:52] [INFO] [SESSION_1001] [admin] [192.168.1.10] [QUERY] - Executed query on audit_logs table
+[2026-08-26 08:48:07] [INFO] [SESSION_1009] [teller04] [192.168.1.24] [TRANSACTION] - Transfer of $600 completed from account 88231 to account 45821
+[2026-08-26 08:50:29] [WARNING] [SESSION_1002] [teller01] [192.168.1.21] [QUERY] - Query execution time exceeded 5 seconds
+[2026-08-26 08:52:14] [INFO] [SESSION_1003] [teller02] [192.168.1.22] [AUTH] - User teller02 logged out successfully
+[2026-08-26 08:54:31] [INFO] [SESSION_1004] [teller03] [192.168.1.23] [QUERY] - Executed query on customers table
+[2026-08-26 08:56:43] [ERROR] [SESSION_1012] [teller03] [192.168.1.23] [TRANSACTION] - Transfer failed because destination account was not found
+[2026-08-26 08:58:19] [INFO] [SESSION_1009] [teller04] [192.168.1.24] [QUERY] - Executed query on transactions table
+[2026-08-26 09:00:02] [CRITICAL] [SESSION_1001] [admin] [192.168.1.10] [BACKUP] - Backup process failed due to storage error
+[2026-08-26 09:02:27] [WARNING] [SESSION_1001] [admin] [192.168.1.10] [BACKUP] - Backup storage usage exceeded 80 percent
+[2026-08-26 09:04:11] [INFO] [SESSION_1001] [admin] [192.168.1.10] [BACKUP] - Backup storage cleanup started
+[2026-08-26 09:06:45] [INFO] [SESSION_1001] [admin] [192.168.1.10] [BACKUP] - Backup storage cleanup completed
+[2026-08-26 09:08:22] [INFO] [SESSION_1013] [teller05] [192.168.1.25] [AUTH] - User teller05 logged in successfully
+[2026-08-26 09:10:39] [INFO] [SESSION_1013] [teller05] [192.168.1.25] [QUERY] - Executed query on accounts table
+[2026-08-26 09:12:54] [INFO] [SESSION_1013] [teller05] [TRANSACTION] - Deposit of $400 completed for account 63412
+[2026-08-26 09:15:07] [WARNING] [SESSION_1013] [teller05] [192.168.1.25] [TRANSACTION] - Multiple transactions detected within short time period
+[2026-08-26 09:17:28] [INFO] [SESSION_1002] [teller01] [192.168.1.21] [TRANSACTION] - Deposit of $150 completed for account 45821
+[2026-08-26 09:19:43] [ERROR] [SESSION_1014] [unknown] [203.0.113.55] [AUTH] - Failed login attempt for user root (invalid password)
+[2026-08-26 09:21:16] [INFO] [SESSION_1004] [teller03] [192.168.1.23] [TRANSACTION] - Withdrawal of $500 completed for account 77124
+[2026-08-26 09:23:51] [WARNING] [SESSION_1004] [teller03] [192.168.1.23] [TRANSACTION] - Withdrawal amount approaching daily limit
+[2026-08-26 09:25:37] [INFO] [SESSION_1009] [teller04] [192.168.1.24] [QUERY] - Executed query on customers table
+[2026-08-26 09:27:08] [INFO] [SESSION_1013] [teller05] [192.168.1.25] [QUERY] - Executed query on transactions table
+[2026-08-26 09:29:42] [ERROR] [SESSION_1015] [teller05] [192.168.1.25] [TRANSACTION] - Deposit failed because account was locked
+[2026-08-26 09:31:19] [INFO] [SESSION_1001] [admin] [192.168.1.10] [QUERY] - Executed query on users table
+[2026-08-26 09:33:44] [WARNING] [SESSION_1001] [admin] [QUERY] - Database connection pool nearing capacity
+[2026-08-26 09:35:12] [INFO] [SESSION_1003] [teller02] [192.168.1.22] [AUTH] - User teller02 logged in successfully
+[2026-08-26 09:37:28] [INFO] [SESSION_1003] [teller02] [QUERY] - Executed query on accounts table
+[2026-08-26 09:39:51] [INFO] [SESSION_1003] [teller02] [TRANSACTION] - Deposit of $1000 completed for account 56213
+[2026-08-26 09:42:17] [WARNING] [SESSION_1003] [teller02] [QUERY] - Slow query detected on transactions table
+[2026-08-26 09:44:39] [ERROR] [SESSION_1016] [unknown] [198.51.100.42] [AUTH] - Failed login attempt for user admin (invalid password)
+[2026-08-26 09:46:03] [INFO] [SESSION_1009] [teller04] [192.168.1.24] [TRANSACTION] - Withdrawal of $250 completed for account 88231
+[2026-08-26 09:48:26] [INFO] [SESSION_1013] [teller05] [192.168.1.25] [TRANSACTION] - Transfer of $300 completed from account 63412 to account 56213
+[2026-08-26 09:50:44] [CRITICAL] [SESSION_1013] [teller05] [192.168.1.25] [TRANSACTION] - Transaction rollback triggered after database connection failure
+[2026-08-26 09:52:18] [INFO] [SESSION_1002] [teller01] [192.168.1.21] [QUERY] - Executed query on audit_logs table
+[2026-08-26 09:54:31] [WARNING] [SESSION_1002] [teller01] [192.168.1.21] [QUERY] - Query execution time exceeded 5 seconds
+[2026-08-26 09:56:07] [INFO] [SESSION_1004] [teller03] [192.168.1.23] [AUTH] - User teller03 logged out successfully
+[2026-08-26 09:58:42] [INFO] [SESSION_1017] [teller06] [192.168.1.26] [AUTH] - User teller06 logged in successfully
+[2026-08-26 10:00:15] [INFO] [SESSION_1017] [teller06] [192.168.1.26] [QUERY] - Executed query on accounts table
+[2026-08-26 10:02:38] [INFO] [SESSION_1017] [teller06] [192.168.1.26] [TRANSACTION] - Deposit of $650 completed for account 91234
+[2026-08-26 10:04:51] [WARNING] [SESSION_1017] [teller06] [192.168.1.26] [TRANSACTION] - Large deposit amount detected
+[2026-08-26 10:07:13] [ERROR] [SESSION_1018] [unknown] [203.0.113.77] [AUTH] - Failed login attempt for user root (invalid password)
+[2026-08-26 10:09:46] [INFO] [SESSION_1017] [teller06] [192.168.1.26] [QUERY] - Executed query on customers table
+[2026-08-26 10:12:05] [INFO] [SESSION_1001] [admin] [192.168.1.10] [BACKUP] - Incremental backup started
+[2026-08-26 10:14:27] [INFO] [SESSION_1001] [admin] [192.168.1.10] [BACKUP] - Incremental backup completed successfully
+[2026-08-26 10:16:49] [WARNING] [SESSION_1001] [admin] [192.168.1.10] [BACKUP] - Backup file size larger than expected
+[2026-08-26 10:19:11] [INFO] [SESSION_1009] [teller04] [192.168.1.24] [TRANSACTION] - Deposit of $800 completed for account 88231
+[2026-08-26 10:21:36] [ERROR] [SESSION_1019] [teller04] [192.168.1.24] [TRANSACTION] - Withdrawal failed due to daily limit
+[2026-08-26 10:23:58] [INFO] [SESSION_1003] [teller02] [192.168.1.22] [QUERY] - Executed query on transactions table
+[2026-08-26 10:26:14] [INFO] [SESSION_1017] [teller06] [192.168.1.26] [TRANSACTION] - Withdrawal of $200 completed for account 91234
+[2026-08-26 10:28:47] [WARNING] [SESSION_1017] [teller06] [192.168.1.26] [QUERY] - Slow query detected on accounts table
+[2026-08-26 10:31:03] [ERROR] [SESSION_1020] [unknown] [198.51.100.89] [AUTH] - Failed login attempt for user teller02 (invalid password)
+[2026-08-26 10:33:29] [INFO] [SESSION_1002] [teller01] [192.168.1.21] [AUTH] - User teller01 logged out successfully
+[2026-08-26 10:35:41] [INFO] [SESSION_1013] [teller05] [192.168.1.25] [QUERY] - Executed query on customers table
+[2026-08-26 10:38:12] [WARNING] [SESSION_1013] [teller05] [192.168.1.25] [QUERY] - Database response time is above normal
+[2026-08-26 10:40:36] [INFO] [SESSION_1001] [admin] [192.168.1.10] [QUERY] - Executed query on audit_logs table
+[2026-08-26 10:43:18] [CRITICAL] [SESSION_1001] [admin] [192.168.1.10] [BACKUP] - Database backup failed due to corrupted backup destination
+[2026-08-26 10:45:02] [ERROR] [SESSION_1021] [teller06] [192.168.1.26] [TRANSACTION] - Transfer failed due to database timeout
+[2026-08-26 10:47:25] [INFO] [SESSION_1021] [teller06] [192.168.1.26] [TRANSACTION] - Transfer request retried successfully
+[2026-08-26 10:49:47] [INFO] [SESSION_1017] [teller06] [192.168.1.26] [QUERY] - Executed query on transactions table
+[2026-08-26 10:52:11] [WARNING] [SESSION_1017] [teller06] [192.168.1.26] [TRANSACTION] - Multiple failed transaction attempts detected
+[2026-08-26 10:54:38] [ERROR] [SESSION_1022] [unknown] [203.0.113.101] [AUTH] - Failed login attempt for user root (invalid password)
+[2026-08-26 10:57:04] [INFO] [SESSION_1009] [teller04] [192.168.1.24] [AUTH] - User teller04 logged out successfully
+[2026-08-26 10:59:26] [INFO] [SESSION_1013] [teller05] [192.168.1.25] [TRANSACTION] - Withdrawal of $450 completed for account 63412
+[2026-08-26 11:02:18] [WARNING] [SESSION_1013] [teller05] [192.168.1.25] [TRANSACTION] - Transaction processing time exceeded expected duration
+[2026-08-26 11:04:41] [INFO] [SESSION_1003] [teller02] [192.168.1.22] [AUTH] - User teller02 logged out successfully
+[2026-08-26 11:07:03] [INFO] [SESSION_1017] [teller06] [192.168.1.26] [QUERY] - Executed query on accounts table
+[2026-08-26 11:09:29] [ERROR] [SESSION_1023] [unknown] [198.51.100.42] [AUTH] - Failed login attempt for user admin (invalid password)
+[2026-08-26 11:11:52] [INFO] [SESSION_1001] [admin] [192.168.1.10] [BACKUP] - Backup verification started
+[2026-08-26 11:14:16] [INFO] [SESSION_1001] [admin] [192.168.1.10] [BACKUP] - Backup verification completed successfully
+[2026-08-26 11:16:43] [WARNING] [SESSION_1001] [admin] [192.168.1.10] [BACKUP] - Backup verification found outdated archive
+[2026-08-26 11:19:05] [INFO] [SESSION_1024] [teller07] [192.168.1.27] [AUTH] - User teller07 logged in successfully
+[2026-08-26 11:21:28] [INFO] [SESSION_1024] [teller07] [192.168.1.27] [QUERY] - Executed query on accounts table
+[2026-08-26 11:23:51] [INFO] [SESSION_1024] [teller07] [192.168.1.27] [TRANSACTION] - Deposit of $300 completed for account 72145
+[2026-08-26 11:26:14] [INFO] [SESSION_1024] [teller07] [192.168.1.27] [TRANSACTION] - Withdrawal of $100 completed for account 72145
+[2026-08-26 11:28:37] [WARNING] [SESSION_1024] [teller07] [192.168.1.27] [QUERY] - Slow query detected on customers table
+[2026-08-26 11:31:02] [ERROR] [SESSION_1025] [unknown] [203.0.113.55] [AUTH] - Failed login attempt for user root (invalid password)
+[2026-08-26 11:33:25] [INFO] [SESSION_1017] [teller06] [192.168.1.26] [TRANSACTION] - Deposit of $550 completed for account 91234
+[2026-08-26 11:35:48] [WARNING] [SESSION_1017] [teller06] [192.168.1.26] [TRANSACTION] - Large transaction requires manager approval
+[2026-08-26 11:38:11] [INFO] [SESSION_1001] [admin] [192.168.1.10] [QUERY] - Executed query on transactions table
+[2026-08-26 11:40:36] [ERROR] [SESSION_1026] [teller07] [192.168.1.27] [TRANSACTION] - Withdrawal failed because account balance could not be retrieved
+[2026-08-26 11:42:59] [CRITICAL] [SESSION_1026] [teller07] [192.168.1.27] [TRANSACTION] - Transaction rollback triggered after database failure
+[2026-08-26 11:45:21] [INFO] [SESSION_1024] [teller07] [192.168.1.27] [QUERY] - Executed query on audit_logs table
+[2026-08-26 11:47:44] [INFO] [SESSION_1024] [teller07] [192.168.1.27] [AUTH] - User teller07 logged out successfully
+[2026-08-26 11:50:08] [ERROR] [SESSION_1027] [unknown] [198.51.100.89] [AUTH] - Failed login attempt for user root (invalid password)
+[2026-08-26 11:52:31] [WARNING] [SESSION_1001] [admin] [192.168.1.10] [QUERY] - Database connection pool nearing capacity
+[2026-08-26 11:54:55] [INFO] [SESSION_1013] [teller05] [192.168.1.25] [QUERY] - Executed query on accounts table
+[2026-08-26 11:57:18] [INFO] [SESSION_1013] [teller05] [AUTH] - User teller05 logged out successfully
+[2026-08-26 11:59:42] [CRITICAL] [SESSION_1001] [admin] [192.168.1.10] [BACKUP] - Scheduled backup could not be completed
