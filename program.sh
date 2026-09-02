@@ -232,7 +232,24 @@ loginLogoutSessionReport(){
 	echo
 }
 	
+#==================================Task #8====================
+ephReport(){
+	echo  
+	grep -o " [0-9][0-9]:" "$datafile" | tr -d ' :' | sort -u > hours.tmp
 
+	printf "%-7s %-7s\n" "Hour" "Freq."
+	while read hour
+	do
+		freq=$(grep "$hour:[0-9][0-9]:[0-9][0-9]\]" "$datafile" | wc -l)
+
+		printf "%-7s %-7s\n" "$hour" "$freq"
+	done < hours.tmp
+
+
+	rm hours.tmp
+	echo
+
+}
 ###################
 #-----main program
 ###################
@@ -256,7 +273,7 @@ do
 		5) criticalEventsReport;;
 		6) userActivityReport;;
 		7) loginLogoutSessionReport;;
-		8) echo eight;;
+		8) ephReport;;
 		9) echo nine;;
 		0) echo exiting...;;
 		*) echo invalid menu choice;;
