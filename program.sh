@@ -150,7 +150,26 @@ transactionReport(){
 
 #=============================================Task 5=====================
 criticalEventsReport(){
-	echo 5
+	echo
+
+	grep "\[CRITICAL\]" "$datafile" > criticals.tmp
+
+
+	printf "%-20s %s\n" "Timestamp" "Message" 
+	while read line
+	do
+
+		timestamp=$(echo "$line" | awk -F'[][ ]+' '{print $2,$3}')
+		message=$(echo "$line" | sed 's/^.*\] - //')
+		printf "%-20s %s\n" "$timestamp" "$message"
+	done < criticals.tmp
+
+	
+	
+	rm criticals.tmp
+	
+	echo
+
 }
 
 
