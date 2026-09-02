@@ -173,6 +173,27 @@ criticalEventsReport(){
 }
 
 
+#===============================Task #6=============
+userActivityReport(){
+	echo 
+	
+	read -p "Enter the username: " username
+	grep "\["$username"\]" "$datafile" > user.tmp
+
+	if [ $(wc -l < user.tmp) -eq 0 ]; then
+		echo "user not found"
+	else
+		echo
+		cat user.tmp | sort
+	fi
+
+
+
+	rm user.tmp
+	echo
+}
+
+
 ###################
 #-----main program
 ###################
@@ -194,7 +215,7 @@ do
 		3) slowQueryDetector;;
 		4) transactionReport;;
 		5) criticalEventsReport;;
-		6) echo six;;
+		6) userActivityReport;;
 		7) echo seven;;
 		8) echo eight;;
 		9) echo nine;;
