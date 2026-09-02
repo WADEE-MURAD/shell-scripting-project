@@ -27,6 +27,7 @@ showMenu() {
 
 #==================Task #1 ============================
 failedLoginReport(){
+	echo "============Failed Login Report================"
 	grep -i '\[error\].*\[auth\].*failed login attempt' "$datafile" > failedLogin.tmp
 
 	printf "number of failed login attempts: "
@@ -58,6 +59,7 @@ failedLoginReport(){
 #=======================Task #2 ===============================
 queryActivitySummary(){
 	
+	echo "============Query Activity Summary================"
 	grep "\[QUERY\]" "$datafile" > queryEvents.tmp
 	printf "Total Number of QUERY events: "
 	wc -l < queryEvents.tmp
@@ -85,6 +87,8 @@ queryActivitySummary(){
 
 #=========================Task #3 ====================================
 slowQueryDetector(){
+
+	echo "============Slow Query Detector================"
 	grep "\[WARNING\]" "$datafile" | grep "\[QUERY\]" | grep -i "slow" > slowQueries.tmp
 
 	printf "\n%-15s %-15s\n" "User" "Execution time"
@@ -104,6 +108,7 @@ echo
 transactionReport(){
 
 	echo
+	echo "============Transaction Report================"
 
 	grep "\[TRANSACTION\]" "$datafile" > transactions.tmp
 	grep -io "deposit.*" transactions.tmp | grep -o "\$.*" | tr -d '$' > deposits.tmp
@@ -151,6 +156,7 @@ transactionReport(){
 #=============================================Task 5=====================
 criticalEventsReport(){
 	echo
+	echo "============Critical Events Report================"
 
 	grep "\[CRITICAL\]" "$datafile" > criticals.tmp
 
@@ -176,6 +182,7 @@ criticalEventsReport(){
 #===============================Task #6=============
 userActivityReport(){
 	echo 
+	echo "============User Activity Report================"
 	
 	read -p "Enter the username: " username
 	grep "\["$username"\]" "$datafile" > user.tmp
@@ -196,6 +203,7 @@ userActivityReport(){
 #===========================Task #7====================
 loginLogoutSessionReport(){
 	echo
+	echo "============Login/logout Session Report================"
 	grep -o "\[SESSION_[0-9]*\]" "$datafile" | tr -d '[]' | sort -u > sessionsID.tmp
 	
 	grep "\[SESSION_[0-9]*\]" "$datafile" | grep "\[AUTH\]" > sessions.tmp
@@ -235,6 +243,7 @@ loginLogoutSessionReport(){
 #==================================Task #8====================
 ephReport(){
 	echo  
+	echo "============Event-per-hour Report================"
 	grep -o " [0-9][0-9]:" "$datafile" | tr -d ' :' | sort -u > hours.tmp
 
 	printf "%-7s %-7s\n" "Hour" "Freq."
@@ -250,6 +259,47 @@ ephReport(){
 	echo
 
 }
+
+#=================================Task #9 ============
+generalLogSummary(){
+	echo
+	echo "============General Log Summary================"
+	totalLines=$(wc -l < "$datafile")
+
+	grep -o "\[INFO\]\|\[WARNING\]\|\[ERROR\]\|\[CRITICAL\]" "$datafile" | tr -d '[]' | sort | uniq -c > levels.tmp
+	grep -o "\[AUTH\]\|\[QUERY\]\|\[TRANSACTION\]\|\[BACKUP\]" "$datafile" | tr -d '[]' | sort | uniq -c | sort -nr > modules.tmp
+
+	echo "Total Lines: $totalLines"
+	echo
+
+	printf "%-12s %-7s\n" "Level" "Count"
+	while read count level
+	do
+		printf "%-12s %-7s\n" "$level" "$count"
+	done < levels.tmp
+
+	echo
+	busiestModule=$(head -1 modules.tmp | awk '{print $2}')
+	busiestCount=$(head -1 modules.tmp | awk '{print $1}')
+	echo "Busiest Module: $busiestModule ($busiestCount events)"
+
+	rm levels.tmp modules.tmp
+	echo
+}
+
+
+runAll(){
+failedLoginReport
+queryActivitySummary
+slowQueryDetector
+transactionReport
+criticalEventsReport
+userActivityReport
+loginLogoutSessionReport
+ephReport
+generalLogSummary
+}
+
 ###################
 #-----main program
 ###################
@@ -274,7 +324,8 @@ do
 		6) userActivityReport;;
 		7) loginLogoutSessionReport;;
 		8) ephReport;;
-		9) echo nine;;
+		9) generalLogSummary;;
+		10) runAll;;
 		0) echo exiting...;;
 		*) echo invalid menu choice;;
 	esac
