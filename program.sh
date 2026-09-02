@@ -1,11 +1,28 @@
 #!/bin/sh
 
-datafile="$1"
+datafile=data/bank_server.log
 
 #######################
 #---------functions
 ######################
 
+#=================== show menu ========================
+showMenu() {
+   
+    echo
+    echo "1. Failed Login Report"
+    echo "2. Query Activity Summary"
+    echo "3. Slow Query Detector"
+    echo "4. Transaction Report"
+    echo "5. Critical Events Report"
+    echo "6. User Activity Report"
+    echo "7. Login/Logout Session Report"
+    echo "8. Events-per-Hour Report"
+    echo "9. General Log Summary"
+    echo "10. Run All Reports"
+    echo "0. Exit"
+    echo
+}
 
 
 #==================Task #1 ============================
@@ -66,6 +83,76 @@ queryActivitySummary(){
 
 }
 
+#=========================Task #3 ====================================
+slowQueryDetector(){
+	grep "\[WARNING\]" "$datafile" | grep "\[QUERY\]" | grep -i "slow" > slowQueries.tmp
+
+	printf "\n%-15s %-15s\n" "User" "Execution time"
+	while read line
+	do
+
+		user=$(echo "$line" | awk '{print $5}')
+		time=$(echo "$line" | grep -io "time.*" | awk '{print $2}') 
+
+		printf "%-15s %-15s\n" "$user" "$time"
+done < slowQueries.tmp
+	rm slowQueries.tmp
+echo
+}
+
+#===========================Task #4==========================
+transactionReport(){
+
+	echo
+
+	grep "\[TRANSACTION\]" "$datafile" > transactions.tmp
+	grep -io "deposit.*" transactions.tmp | grep -o "\$.*" | tr -d '$' > deposits.tmp
+	grep -io "withdraw.*" transactions.tmp | grep -o "\$.*" | tr -d '$' > withdrawals.tmp
+
+
+	depNum=$(grep -i "deposit" transactions.tmp | wc -l )
+	withNum=$(grep -i "withdraw" transactions.tmp | wc -l )
+	decNum=$(grep -i "decline" transactions.tmp | wc -l )
+	rollNum=$(grep -i "rollback" transactions.tmp | wc -l )
+
+	totDep=0
+	totWith=0
+	
+	while read line
+	do
+
+		totDep=$(echo "$totDep + $line" | bc)
+	done < deposits.tmp
+
+		while read line
+	do
+
+		totWith=$(echo "$totWith + $line" | bc)
+	done < withdrawals.tmp
+
+
+	echo "deposits: "$depNum""
+	echo "Withdrawals: "$withNum""
+	echo "declined transactions: "$decNum""
+	echo "rollbacks: "$rollNum""
+	echo "-----------------------"
+
+	echo "total depostis: "$totDep""
+	echo "total withdrawals: "$totWith""
+
+	rm transactions.tmp deposits.tmp withdrawals.tmp
+
+	echo
+
+}
+
+
+
+#=============================================Task 5=====================
+criticalEventsReport(){
+	echo 5
+}
+
 
 ###################
 #-----main program
@@ -75,16 +162,19 @@ queryActivitySummary(){
 # while loop for the menu
 #
 choice=-1
+
+
 while [ "$choice" -ne 0 ]
 do
+	showMenu
 	read -p "Enter your choice: " choice
 	
 	case "$choice" in
 		1) failedLoginReport;;
 		2) queryActivitySummary;;
-		3) echo three;;
-		4) echo four;;
-		5) echo five;;
+		3) slowQueryDetector;;
+		4) transactionReport;;
+		5) criticalEventsReport;;
 		6) echo six;;
 		7) echo seven;;
 		8) echo eight;;

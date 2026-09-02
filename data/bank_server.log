@@ -1,44 +1,46 @@
-[2026-08-28 08:01:12] [INFO] [SESSION_1001] [admin] [192.168.1.10] [AUTH] - Successful login for user admin
-[2026-08-28 08:02:03] [INFO] [SESSION_1001] [admin] [192.168.1.10] [QUERY] - SELECT * FROM accounts
-[2026-08-28 08:02:18] [INFO] [SESSION_1001] [admin] [192.168.1.10] [QUERY] - SELECT account_id, balance FROM accounts
-[2026-08-28 08:03:01] [INFO] [SESSION_1002] [teller01] [192.168.1.15] [AUTH] - Successful login for user teller01
-[2026-08-28 08:03:24] [INFO] [SESSION_1002] [teller01] [QUERY] - UPDATE accounts SET balance=1500
-[2026-08-28 08:04:10] [WARNING] [SESSION_1002] [teller01] [QUERY] - SELECT * FROM transactions WHERE account_id=4521
-[2026-08-28 08:05:33] [ERROR] [SESSION_1003] [unknown] [203.0.113.55] [AUTH] - Failed login attempt for user root (invalid password)
-[2026-08-28 08:05:41] [ERROR] [SESSION_1004] [unknown] [203.0.113.55] [AUTH] - Failed login attempt for user admin (invalid password)
-[2026-08-28 08:05:49] [ERROR] [SESSION_1005] [unknown] [203.0.113.55] [AUTH] - Failed login attempt for user root (invalid password)
-[2026-08-28 08:06:02] [ERROR] [SESSION_1006] [unknown] [203.0.113.55] [AUTH] - Failed login attempt for user admin (invalid password)
-[2026-08-28 08:06:15] [ERROR] [SESSION_1007] [unknown] [203.0.113.55] [AUTH] - Failed login attempt for user teller01 (invalid password)
-[2026-08-28 08:07:03] [INFO] [SESSION_1008] [admin] [192.168.1.10] [QUERY] - INSERT INTO transactions VALUES (4521, 500)
-[2026-08-28 08:07:25] [INFO] [SESSION_1008] [admin] [192.168.1.10] [QUERY] - SELECT * FROM transactions WHERE account_id=4521
-[2026-08-28 08:08:17] [INFO] [SESSION_1009] [teller02] [192.168.1.20] [AUTH] - Successful login for user teller02
-[2026-08-28 08:08:43] [INFO] [SESSION_1009] [teller02] [QUERY] - UPDATE accounts SET balance=2300 WHERE account_id=7812
-[2026-08-28 08:09:11] [INFO] [SESSION_1009] [teller02] [QUERY] - DELETE FROM temporary_transactions WHERE session_id=1009
-[2026-08-28 08:09:38] [WARNING] [SESSION_1009] [teller02] [QUERY] - SELECT * FROM audit_log WHERE user='teller02'
-[2026-08-28 08:10:02] [INFO] [SESSION_1010] [admin] [192.168.1.10] [BACKUP] - Database backup started
-[2026-08-28 08:11:14] [INFO] [SESSION_1010] [admin] [192.168.1.10] [BACKUP] - Database backup completed successfully
-[2026-08-28 08:12:05] [ERROR] [SESSION_1011] [unknown] [198.51.100.42] [AUTH] - Failed login attempt for user admin (invalid password)
-[2026-08-28 08:12:17] [ERROR] [SESSION_1012] [unknown] [198.51.100.42] [AUTH] - Failed login attempt for user admin (invalid password)
-[2026-08-28 08:12:31] [ERROR] [SESSION_1013] [unknown] [198.51.100.42] [AUTH] - Failed login attempt for user admin (invalid password)
-[2026-08-28 08:13:02] [INFO] [SESSION_1014] [admin] [192.168.1.10] [QUERY] - SELECT COUNT(*) FROM accounts
-[2026-08-28 08:13:25] [INFO] [SESSION_1014] [admin] [192.168.1.10] [QUERY] - UPDATE accounts SET status='active'
-[2026-08-28 08:14:09] [INFO] [SESSION_1015] [teller01] [192.168.1.15] [QUERY] - INSERT INTO customers VALUES (9912, 'John')
-[2026-08-28 08:14:44] [WARNING] [SESSION_1015] [teller01] [192.168.1.15] [QUERY] - SELECT * FROM customers WHERE customer_id=9912
-[2026-08-28 08:15:20] [INFO] [SESSION_1016] [admin] [192.168.1.10] [TRANSACTION] - Deposit of $5000 completed
-[2026-08-28 08:16:03] [ERROR] [SESSION_1017] [teller02] [192.168.1.20] [TRANSACTION] - Transaction failed due to insufficient funds
-[2026-08-28 08:16:45] [INFO] [SESSION_1018] [admin] [192.168.1.10] [QUERY] - DELETE FROM archived_sessions WHERE date < '2025-01-01'
-[2026-08-28 08:17:19] [INFO] [SESSION_1018] [admin] [192.168.1.10] [QUERY] - SELECT * FROM audit_log
-[2026-08-28 08:18:04] [ERROR] [SESSION_1019] [unknown] [203.0.113.55] [AUTH] - Failed login attempt for user root (invalid password)
-[2026-08-28 08:18:21] [INFO] [SESSION_1020] [teller01] [192.168.1.15] [QUERY] - UPDATE customers SET address='Nablus'
-[2026-08-28 08:19:07] [INFO] [SESSION_1020] [teller01] [192.168.1.15] [QUERY] - SELECT customer_id, name FROM customers
-[2026-08-28 08:20:33] [CRITICAL] [SESSION_1021] [admin] [192.168.1.10] [BACKUP] - Backup failed due to disk space
-[2026-08-28 08:21:11] [INFO] [SESSION_1022] [admin] [192.168.1.10] [QUERY] - INSERT INTO audit_log VALUES ('admin', 'login')
-[2026-08-28 08:22:06] [WARNING] [SESSION_1022] [admin] [192.168.1.10] [QUERY] - SELECT * FROM accounts WHERE balance > 10000
-[2026-08-28 08:23:18] [INFO] [SESSION_1023] [teller02] [192.168.1.20] [QUERY] - SELECT * FROM transactions
-[2026-08-28 08:24:02] [INFO] [SESSION_1023] [teller02] [192.168.1.20] [QUERY] - UPDATE transactions SET status='approved'
-[2026-08-28 08:25:44] [ERROR] [SESSION_1024] [unknown] [198.51.100.42] [AUTH] - Failed login attempt for user root (invalid password)
-[2026-08-28 08:26:17] [INFO] [SESSION_1025] [admin] [192.168.1.10] [QUERY] - SELECT * FROM users
-[2026-08-28 08:27:03] [INFO] [SESSION_1025] [admin] [192.168.1.10] [QUERY] - DELETE FROM sessions WHERE expired=1
-[2026-08-28 08:28:29] [INFO] [SESSION_1026] [teller01] [192.168.1.15] [QUERY] - INSERT INTO transactions VALUES (7812, 1200)
-[2026-08-28 08:29:15] [INFO] [SESSION_1026] [teller01] [192.168.1.15] [QUERY] - SELECT balance FROM accounts WHERE account_id=7812
-[2026-08-28 08:30:01] [INFO] [SESSION_1027] [admin] [192.168.1.10] [AUTH] - User admin logged out
+[2026-08-15 08:00:05] [INFO] [SESSION_1001] [admin] [192.168.1.10] [AUTH] - Successful login for user admin
+[2026-08-15 08:02:15] [INFO] [SESSION_1001] [admin] [192.168.1.10] [QUERY] - Executed SELECT query on table accounts
+[2026-08-15 08:03:40] [INFO] [SESSION_1001] [admin] [192.168.1.10] [QUERY] - Executed UPDATE query on table accounts
+[2026-08-15 08:04:12] [WARNING] [SESSION_1001] [admin] [192.168.1.10] [QUERY] - Slow query detected on table transactions_history, execution time 5.8s
+[2026-08-15 08:05:10] [INFO] [SESSION_1002] [teller01] [192.168.1.15] [AUTH] - Successful login for user teller01
+[2026-08-15 08:06:00] [INFO] [SESSION_1002] [teller01] [192.168.1.15] [TRANSACTION] - Deposit transaction completed, amount $1500.00
+[2026-08-15 08:07:33] [ERROR] [SESSION_1003] [unknown] [203.0.113.55] [AUTH] - Failed login attempt for user root (invalid password)
+[2026-08-15 08:07:45] [ERROR] [SESSION_1004] [unknown] [203.0.113.55] [AUTH] - Failed login attempt for user root (invalid password)
+[2026-08-15 08:08:02] [ERROR] [SESSION_1005] [unknown] [203.0.113.55] [AUTH] - Failed login attempt for user admin (invalid password)
+[2026-08-15 08:08:20] [ERROR] [SESSION_1006] [unknown] [203.0.113.55] [AUTH] - Failed login attempt for user root (invalid password)
+[2026-08-15 08:09:00] [ERROR] [SESSION_1007] [unknown] [198.51.100.23] [AUTH] - Failed login attempt for user teller01 (invalid password)
+[2026-08-15 08:10:15] [INFO] [SESSION_1001] [admin] [192.168.1.10] [QUERY] - Executed INSERT query on table logs
+[2026-08-15 08:12:30] [WARNING] [SESSION_1002] [teller01] [192.168.1.15] [TRANSACTION] - Transaction declined for account 10293 due to insufficient funds
+[2026-08-15 08:14:05] [INFO] [SESSION_1002] [teller01] [192.168.1.15] [TRANSACTION] - Withdrawal transaction completed, amount $300.00
+[2026-08-15 08:15:20] [INFO] [SESSION_1001] [admin] [192.168.1.10] [AUTH] - User admin logged out
+[2026-08-15 09:00:00] [INFO] [SESSION_1002] [teller01] [192.168.1.15] [AUTH] - User teller01 logged out
+[2026-08-15 09:05:00] [INFO] [SESSION_1010] [manager1] [192.168.1.20] [AUTH] - Successful login for user manager1
+[2026-08-15 09:10:22] [INFO] [SESSION_1010] [manager1] [192.168.1.20] [QUERY] - Executed DELETE query on table temp_sessions
+[2026-08-15 09:15:47] [CRITICAL] [SESSION_1010] [manager1] [192.168.1.20] [TRANSACTION] - Transaction rollback due to system error on account 55231
+[2026-08-15 09:20:00] [CRITICAL] [SESSION_1010] [manager1] [192.168.1.20] [BACKUP] - Backup process failed, disk write error
+[2026-08-15 09:25:00] [INFO] [SESSION_1010] [manager1] [192.168.1.20] [BACKUP] - Backup process completed successfully
+[2026-08-15 09:40:11] [WARNING] [SESSION_1010] [manager1] [192.168.1.20] [QUERY] - Slow query detected on table audit_log, execution time 8.3s
+[2026-08-15 09:45:00] [INFO] [SESSION_1010] [manager1] [192.168.1.20] [AUTH] - User manager1 logged out
+[2026-08-15 10:02:00] [INFO] [SESSION_1020] [teller02] [192.168.1.25] [AUTH] - Successful login for user teller02
+[2026-08-15 10:05:30] [INFO] [SESSION_1020] [teller02] [192.168.1.25] [TRANSACTION] - Deposit transaction completed, amount $2200.50
+[2026-08-15 10:10:12] [INFO] [SESSION_1020] [teller02] [192.168.1.25] [QUERY] - Executed SELECT query on table customers
+[2026-08-15 10:15:00] [WARNING] [SESSION_1020] [teller02] [192.168.1.25] [TRANSACTION] - Transaction declined for account 88213 due to invalid account number
+[2026-08-15 11:00:00] [ERROR] [SESSION_1030] [unknown] [203.0.113.99] [AUTH] - Failed login attempt for user teller02 (invalid password)
+[2026-08-15 11:00:15] [ERROR] [SESSION_1031] [unknown] [203.0.113.99] [AUTH] - Failed login attempt for user teller02 (invalid password)
+[2026-08-15 11:00:33] [ERROR] [SESSION_1032] [unknown] [203.0.113.99] [AUTH] - Failed login attempt for user teller02 (invalid password)
+[2026-08-15 11:30:00] [INFO] [SESSION_1040] [admin] [192.168.1.10] [AUTH] - Successful login for user admin
+[2026-08-15 11:32:10] [INFO] [SESSION_1040] [admin] [192.168.1.10] [QUERY] - Executed UPDATE query on table interest_rates
+[2026-08-15 11:35:44] [INFO] [SESSION_1040] [admin] [192.168.1.10] [QUERY] - Executed SELECT query on table accounts
+[2026-08-15 11:40:00] [INFO] [SESSION_1040] [admin] [192.168.1.10] [AUTH] - User admin logged out
+[2026-08-15 13:15:00] [INFO] [SESSION_1050] [teller01] [192.168.1.15] [AUTH] - Successful login for user teller01
+[2026-08-15 13:17:22] [INFO] [SESSION_1050] [teller01] [192.168.1.15] [TRANSACTION] - Withdrawal transaction completed, amount $750.00
+[2026-08-15 13:20:00] [WARNING] [SESSION_1050] [teller01] [192.168.1.15] [QUERY] - Slow query detected on table transactions_history, execution time 6.1s
+[2026-08-15 13:25:00] [INFO] [SESSION_1050] [teller01] [192.168.1.15] [TRANSACTION] - Deposit transaction completed, amount $900.00
+[2026-08-15 13:30:00] [INFO] [SESSION_1050] [teller01] [192.168.1.15] [AUTH] - User teller01 logged out
+[2026-08-15 14:05:00] [CRITICAL] [SESSION_1060] [manager1] [192.168.1.20] [BACKUP] - Backup process failed, insufficient storage space
+[2026-08-15 15:00:00] [INFO] [SESSION_1070] [admin] [192.168.1.10] [AUTH] - Successful login for user admin
+[2026-08-15 15:02:15] [INFO] [SESSION_1070] [admin] [192.168.1.10] [QUERY] - Executed DELETE query on table expired_sessions
+[2026-08-15 15:10:00] [INFO] [SESSION_1070] [admin] [192.168.1.10] [AUTH] - User admin logged out
+[2026-08-15 16:45:00] [INFO] [SESSION_1080] [teller02] [192.168.1.25] [AUTH] - Successful login for user teller02
+[2026-08-15 16:47:30] [INFO] [SESSION_1080] [teller02] [192.168.1.25] [TRANSACTION] - Deposit transaction completed, amount $500.00
+[2026-08-15 16:50:00] [INFO] [SESSION_1080] [teller02] [192.168.1.25] [AUTH] - User teller02 logged out
