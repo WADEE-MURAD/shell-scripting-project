@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# wadee fatafta 1250758
+# obada sabbah  1240032
+
+
+
 datafile=data/bank_server.log
 
 #######################
