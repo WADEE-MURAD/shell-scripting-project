@@ -193,6 +193,45 @@ userActivityReport(){
 	echo
 }
 
+#===========================Task #7====================
+loginLogoutSessionReport(){
+	echo
+	grep -o "\[SESSION_[0-9]*\]" "$datafile" | tr -d '[]' | sort -u > sessionsID.tmp
+	
+	grep "\[SESSION_[0-9]*\]" "$datafile" | grep "\[AUTH\]" > sessions.tmp
+
+	while read session
+	do
+		login=$(grep "$session" sessions.tmp | grep -i "successful.*login" | awk -F'[][ ]+' '{print $2,$3}')
+		logout=$(grep "$session" sessions.tmp | grep -i "log.*out" | awk -F'[][ ]+' '{print $2,$3}')
+
+		if [ -n "$logout" ]; then
+
+			login_epoch=$(date -d "$login" +%s)
+			logout_epoch=$(date -d "$logout" +%s)
+			diff=$((logout_epoch - login_epoch))
+			duration=$(printf "%02d:%02d:%02d" $((diff/3600)) $((diff%3600/60)) $((diff%60)))
+		else
+			duration=0
+		fi
+
+		if [ -n "$login" ]; then
+			
+			echo "$session: "
+			echo 
+			echo "Login Time: "$login""
+			echo "Logout Time: "$logout""
+			echo "duration: "$duration""
+			echo "--------------------------------------"
+			echo
+		fi
+	done < sessionsID.tmp
+	
+	rm sessions.tmp sessionsID.tmp
+
+	echo
+}
+	
 
 ###################
 #-----main program
@@ -216,7 +255,7 @@ do
 		4) transactionReport;;
 		5) criticalEventsReport;;
 		6) userActivityReport;;
-		7) echo seven;;
+		7) loginLogoutSessionReport;;
 		8) echo eight;;
 		9) echo nine;;
 		0) echo exiting...;;
