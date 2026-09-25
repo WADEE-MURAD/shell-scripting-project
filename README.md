@@ -1,67 +1,84 @@
-# Bank Server Log Analyzer
+# Bank Server Log Analyzer (`program.sh`)
 
-A modular POSIX shell script designed to parse, analyze, and extract security, transaction, and operational metrics from bank server log files.
+A POSIX-compliant shell script designed to parse, aggregate, and analyze bank server log files. It offers an interactive menu to generate operational security reports, query statistics, financial transaction summaries, and session tracking metrics.
 
-## Features
+---
 
-* **Interactive CLI Menu:** Fast navigation across individual analytical tasks or batch execution.
-* **Security & Auth Auditing:**
-  * Detects failed login attempts and flags potential brute-force sources ($\ge 3$ failures per IP).
-  * Tracks user login/logout events and calculates exact session active durations (`HH:MM:SS`).
-* **Database & Query Analytics:**
-  * Categorizes SQL statements (`SELECT`, `INSERT`, `UPDATE`, `DELETE`).
-  * Isolates slow query warnings and identifies the triggering user and execution time.
-* **Financial Transaction Tracking:**
-  * Counts deposits, withdrawals, declines, and rollbacks.
-  * Calculates gross deposit and withdrawal volumes using `bc` arithmetic.
-* **System Health & Forensics:**
-  * Surfaces timestamped `[CRITICAL]` severity messages.
-  * Filters and isolates individual user audit trails.
-  * Generates an events-per-hour activity profile across the operating day.
-  * Aggregates general log metrics, log levels, and pinpoints the busiest system module.
+## Authors
+* **Wadee Fatafta** (ID: 1250758)
+* **Obada Sabbah** (ID: 1240032)
 
-## Project Structure
+---
 
-```text
-.
-├── log_analyzer.sh      # Main shell script
-├── data/
-│   └── bank_server.log  # Input log file
-└── README.md
+## Prerequisites & Dependencies
+
+The script relies on standard Unix/Linux command-line utilities:
+* `sh` / `bash`
+* `grep`, `awk`, `sed`, `cut`, `sort`, `uniq`, `wc`, `tr`
+* `bc` (used for floating-point transaction arithmetic)
+* `date` (supports GNU `-d` syntax for session duration calculation)
+
+---
+
+## Log File Setup
+
+By default, the script reads from:
+```
+data/bank_server.log
 ```
 
-## Requirements
+Ensure the target file exists before running the script. You can create the directory and place your log file there:
+```sh
+mkdir -p data
+# Place your bank_server.log inside ./data/
+```
 
-* POSIX-compliant shell (`/bin/sh` or `/bin/bash`)
-* Standard Unix command-line utilities: `grep`, `awk`, `sed`, `cut`, `sort`, `uniq`, `tr`, `wc`, `date`, `bc`
+### Expected Log Format
+The script parses logs structured with bracketed metadata tags, timestamps, severity levels, modules, session IDs, and descriptive messages:
+```text
+[2024-05-10 14:22:01] [ERROR] [AUTH] [user1] [192.168.1.10] - failed login attempt
+[2024-05-10 14:23:15] [WARNING] [QUERY] [user2] - slow query execution time 3.42s
+[2024-05-10 14:25:00] [INFO] [TRANSACTION] [SESSION_101] - deposit $250.00
+[2024-05-10 14:26:00] [INFO] [AUTH] [SESSION_101] - successful login
+[2024-05-10 14:35:00] [INFO] [AUTH] [SESSION_101] - logged out
+```
+
+---
 
 ## Usage
 
-1. **Make the script executable:**
-   ```bash
-   chmod +x log_analyzer.sh
+1. **Grant execution permissions:**
+   ```sh
+   chmod +x program.sh
    ```
 
-2. **Verify data placement:**  
-   Ensure the target log file exists at `data/bank_server.log` (or modify the `datafile` variable inside the script to match your custom path).
-
-3. **Run the script:**
-   ```bash
-   ./log_analyzer.sh
+2. **Run the script:**
+   ```sh
+   ./program.sh
    ```
+   *(Alternatively: `sh program.sh`)*
 
-## Menu Options
+---
 
-| Option | Task | Description |
+## Menu Options & Tasks
+
+| Option | Report Name | Description |
 | :---: | :--- | :--- |
-| `1` | **Failed Login Report** | Summarizes failed logins, frequencies by user/IP, and brute-force suspects. |
-| `2` | **Query Activity Summary** | Breaks down total database queries by command type. |
-| `3` | **Slow Query Detector** | Extracts slow query alerts, responsible users, and runtimes. |
-| `4` | **Transaction Report** | Aggregates transaction counts, declines, rollbacks, and total funds moved. |
-| `5` | **Critical Events Report** | Filters and formats all critical severity alerts with timestamps. |
-| `6` | **User Activity Report** | Prompts for a username and prints all matching log records. |
-| `7` | **Login/Logout Session Report** | Pairs session IDs to compute exact duration between sign-in and sign-out. |
-| `8` | **Events-per-Hour Report** | Generates hourly distribution frequency for server traffic analysis. |
-| `9` | **General Log Summary** | Overview of total lines, counts by log level, and busiest subsystem. |
-| `10` | **Run All Reports** | Sequentially executes reports 1 through 9. |
-| `0` | **Exit** | Terminates the script interface. |
+| `1` | **Failed Login Report** | Counts total failed authentication attempts, aggregates frequency per `USER` and `IP`, and identifies potential brute-force sources ($\ge 3$ failed attempts from a single IP). |
+| `2` | **Query Activity Summary** | Summarizes database query traffic and breaks down queries by type (`SELECT`, `UPDATE`, `INSERT`, `DELETE`). |
+| `3` | **Slow Query Detector** | Filters `[WARNING]` logs flagged as slow and outputs a formatted table of the username and execution time. |
+| `4` | **Transaction Report** | Summarizes volume of deposits, withdrawals, declines, and rollbacks, calculating total dollar sums for deposits and withdrawals using `bc`. |
+| `5` | **Critical Events Report** | Extracts all `[CRITICAL]` severity messages alongside their event timestamps. |
+| `6` | **User Activity Report** | Prompts for a target username and displays all chronological events associated with that user. |
+| `7` | **Login/Logout Session Report** | Tracks unique session IDs, pairs corresponding login and logout times, and calculates total session duration (`HH:MM:SS`). |
+| `8` | **Events-per-Hour Report** | Generates an hourly event distribution breakdown across the 24-hour log period. |
+| `9` | **General Log Summary** | Displays overall log line counts, event distribution across severity levels (`INFO`, `WARNING`, `ERROR`, `CRITICAL`), and identifies the busiest subsystem module (`AUTH`, `QUERY`, `TRANSACTION`, `BACKUP`). |
+| `10` | **Run All Reports** | Sequentially executes tasks 1 through 9. |
+| `0` | **Exit** | Terminates the interactive loop. |
+
+---
+
+## Implementation Notes
+
+* **Temporary Files:** Each reporting function uses localized `.tmp` scratch files (`failedLogin.tmp`, `sessions.tmp`, etc.) and removes them upon task completion.
+* **Non-destructive Operations:** The log file is read-only; no transformations or deletions are applied to the source log file during execution.
